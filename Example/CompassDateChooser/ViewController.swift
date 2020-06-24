@@ -22,11 +22,14 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         DatePickerViewController.showDatePicker(viewModel: DatePickerViewModel(
-            endDate: Date.init().getStartDayOfTargetMonth(offset: 12), selectedComplete: ({dateList in 
+            endDate: Date.init().getStartDayOfTargetMonth(offset: 12), 
+            selectedDate: [Date.init(timeIntervalSince1970: 1601485261)],
+            selectedComplete: ({dateList in 
                 for date in dateList {
                     print(date)
                 }
-            })))
+            })
+        ))
     }
 }
 

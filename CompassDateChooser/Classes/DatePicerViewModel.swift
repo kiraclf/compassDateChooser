@@ -142,4 +142,32 @@ public struct DatePickerViewModel {
             dismiss = true
         }
     }
+    
+    private func selectedVaildate() -> Bool {
+        guard let selected = self.selectedDate.first else { return false }
+        let calendar = Calendar.init(identifier: .gregorian)
+        if (calendar.isDate(selected, inSameDayAs: startDate) || calendar.isDate(selected, inSameDayAs: endDate) ) {
+            return true
+        } else {
+            if ( selected >= startDate && selected <= endDate) {
+                return true
+            }
+            return false
+        }
+    }
+    
+    
+    /// Get the first selected item's index
+    /// - nil selected not vaildate
+    public func firstSelectedIndex() -> IndexPath? {
+        if (!self.selectedVaildate()) {
+            return nil
+        }
+        let firstSelected = self.selectedDate.first!
+        let month = firstSelected.getMonth()
+        let startMonth = startDate.getMonth()
+        let section = month - startMonth
+        let row = (firstSelected.getDayOfMonth() - 1) + firstSelected.getStartDayOfTargetMonth(offset: 0).getWeekDays()
+        return IndexPath.init(row: row, section: section)
+    }
 }

@@ -27,11 +27,11 @@ public class DatePickerViewController: UIViewController {
     
     lazy var mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let itemWidth = view.bounds.width / 7
+        let itemWidth = UIScreen.main.bounds.width / 7
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize.init(width:itemWidth, height:itemWidth)
-        layout.headerReferenceSize = CGSize.init(width: view.bounds.width, height: 40)
+        layout.headerReferenceSize = CGSize.init(width: UIScreen.main.bounds.width, height: 40)
         let collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         return collectionView
@@ -41,6 +41,11 @@ public class DatePickerViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        jumpToSelected()
     }
     
     // MARK:- Public
@@ -129,6 +134,13 @@ public class DatePickerViewController: UIViewController {
         mainCollectionView.register(CompassDatePickerCell.self, forCellWithReuseIdentifier: DatePickerViewModel.dayCellID)
         mainCollectionView.register(CompassDatePickerHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DatePickerViewModel.headerCellID)
     }
+    
+    private func jumpToSelected() {
+        guard let viewModel = self.viewModel else { return }
+        let selectedIndex = viewModel.firstSelectedIndex()
+        guard let index = selectedIndex else { return }
+        mainCollectionView.scrollToItem(at: index, at: .centeredVertically, animated: true)
+    }
     // MARK:- Sync
     private func syncWithViewModel() {
         dismissVC()
@@ -145,7 +157,7 @@ public class DatePickerViewController: UIViewController {
 }
 
 extension DatePickerViewController: UICollectionViewDataSource {
-    private func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel?.numberOfMonths ?? 0
     }
     
@@ -169,7 +181,7 @@ extension DatePickerViewController: UICollectionViewDataSource {
         return cell
     }
     
-    private func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionElementKindSectionHeader, withReuseIdentifier: DatePickerViewModel.headerCellID, for: indexPath)
         if let header = header as? CompassDatePickerHeaderView {
             let date = viewModel!.getSectionHeaderData(index: indexPath.section)
@@ -183,7 +195,7 @@ extension DatePickerViewController: UICollectionViewDataSource {
 }
 
 extension DatePickerViewController: UICollectionViewDelegate {
-    private func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         guard let dateCell = cell as? CompassDatePickerCell else { return }
         let cellModel = dateCell.viewModel!

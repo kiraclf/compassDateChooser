@@ -21,6 +21,12 @@ public extension Date {
         return nextMonthFirstDate!
     }
     
+    /// Get current Month.
+    func getMonth() -> Int {
+        let calendar = Calendar.init(identifier: .gregorian)
+        return calendar.component(.month, from: self)
+    }
+    
     func getEndDayOfCurrentMonth() -> Date {
         let startOfNextMonth = getStartDayOfTargetMonth(offset: 1)
         let calendar = Calendar.init(identifier: .gregorian)

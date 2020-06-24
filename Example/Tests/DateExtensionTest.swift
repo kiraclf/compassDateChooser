@@ -25,6 +25,12 @@ class DateExtensionTest: QuickSpec {
             //2020-6-18
             self.time = Date.init(timeIntervalSince1970: 1592462475)
         }
+        
+        it("获取月份") {
+            let date = Date.init(timeIntervalSince1970: 1601485261) // 2020-10-1
+            let month = date.getMonth()
+            expect(month).to(equal(10))
+        }
         it("获取月份中的第一天") { 
             let firstMonthDate = self.time!.getStartDayOfTargetMonth(offset: 0)
             let beforeMonthDate = self.time!.getStartDayOfTargetMonth(offset: -1)

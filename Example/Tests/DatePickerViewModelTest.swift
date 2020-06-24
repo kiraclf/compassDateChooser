@@ -15,9 +15,9 @@ class DatePickerViewModelTest: QuickSpec {
     var viewModel: DatePickerViewModel!
     
     private func createDate(year: Int = 2019, month: Int = 1, day: Int = 1) -> Date {
-        let string = "\(year)-\(month)-\(day)-08:00"
+        let string = "\(year)-\(month)-\(day)"
         let format = DateFormatter.init()
-        format.dateFormat = "yyyy-MM-ddZZZZZ"
+        format.dateFormat = "yyyy-MM-dd"
         return format.date(from: string)!
     }
     
@@ -92,6 +92,33 @@ class DatePickerViewModelTest: QuickSpec {
             expect(self.viewModel.selected(date: unSelected)).to(equal(false))
             expect(self.viewModel.selected(date: unSelected2)).to(equal(false))
             expect(self.viewModel.selected(date: selected)).to(equal(true))
+        }
+        describe("获取 selected item index") { 
+            it("无效日期-before") {
+                self.viewModel = DatePickerViewModel(
+                    startDate: self.createDate(year: 2019, month: 1, day: 1), endDate: self.createDate(year: 2019, month: 12, day: 1), selectedDate: [self.createDate(year: 2018, month: 1, day: 1)], chooseCount: 2)
+                let indexpath = self.viewModel.firstSelectedIndex()
+                expect(indexpath).to(beNil())
+            }
+            it("无效日期-after") {
+                self.viewModel = DatePickerViewModel(
+                                   startDate: self.createDate(year: 2019, month: 1, day: 1), endDate: self.createDate(year: 2019, month: 12, day: 1), selectedDate: [self.createDate(year: 2020, month: 1, day: 1)], chooseCount: 2)
+                               let indexpath = self.viewModel.firstSelectedIndex()
+                               expect(indexpath).to(beNil())
+            }
+            it("无日期") {
+                self.viewModel = DatePickerViewModel(
+                                   startDate: self.createDate(year: 2019, month: 1, day: 1), endDate: self.createDate(year: 2019, month: 12, day: 1), selectedDate: [], chooseCount: 2)
+                               let indexpath = self.viewModel.firstSelectedIndex()
+                               expect(indexpath).to(beNil())
+            }
+            it("有效日期") {
+                self.viewModel = DatePickerViewModel(
+                                   startDate: self.createDate(year: 2019, month: 1, day: 1), endDate: self.createDate(year: 2019, month: 12, day: 1), selectedDate: [self.createDate(year: 2019, month: 3, day: 1)], chooseCount: 2)
+                               let indexpath = self.viewModel.firstSelectedIndex()
+                expect(indexpath!.section).to(equal(2))
+                expect(indexpath!.row).to(equal(5))
+            }
         }
         describe("selected date") {
             beforeEach {
