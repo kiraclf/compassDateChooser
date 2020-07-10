@@ -59,16 +59,13 @@
 		607FACE51AFB9204008FA782 /* CompassDateChooser_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompassDateChooser_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E2FA3FA9D229264869C9FF0 /* Pods-CompassDateChooser_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassDateChooser_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CompassDateChooser_Tests/Pods-CompassDateChooser_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		700D172D2499E0D100F84BB4 /* CompassDatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassDatePickerCell.swift; sourceTree = "<group>"; };
-		700D172F2499E0F400F84BB4 /* CompassDatePicerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassDatePicerCellViewModel.swift; sourceTree = "<group>"; };
-		700D17322499E6DF00F84BB4 /* DatePickerColorConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerColorConst.swift; sourceTree = "<group>"; };
-		700D17342499F7EE00F84BB4 /* CompassDatePickerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassDatePickerHeaderView.swift; sourceTree = "<group>"; };
-		700D1737249A0DAA00F84BB4 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		700D173C249B3FB700F84BB4 /* DateExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTest.swift; sourceTree = "<group>"; };
+		7044313C24B70E1200EB9ABB /* DatePickerViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		7044313F24B70FC300EB9ABB /* DatePickerCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		7044314224B712D400EB9ABB /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		7052B3FC24B6FC15003E2BA2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		7052B3FE24B70696003E2BA2 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		707FDDD4249C4EDD0078430F /* DatePickerViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModelTest.swift; sourceTree = "<group>"; };
-		707FDDD6249C8ABD0078430F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		708E36FA2498B29100619CE4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		708E36FC2498B2BA00619CE4 /* DatePicerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicerViewModel.swift; sourceTree = "<group>"; };
 		79CA5178E80CF3E15C305DA3 /* Pods_CompassDateChooser_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CompassDateChooser_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962AA8CCEC2C4E887D16B881 /* Pods-CompassDateChooser_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassDateChooser_Tests.release.xcconfig"; path = "Target Support Files/Pods-CompassDateChooser_Tests/Pods-CompassDateChooser_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A9C6FC866E03F8556E791496 /* Pods-CompassDateChooser_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassDateChooser_Example.release.xcconfig"; path = "Target Support Files/Pods-CompassDateChooser_Example/Pods-CompassDateChooser_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,7 +135,7 @@
 		607FACD21AFB9204008FA782 /* Example for CompassDateChooser */ = {
 			isa = PBXGroup;
 			children = (
-				708E36F92498B24B00619CE4 /* DatePicker */,
+				7052B3FB24B6FBED003E2BA2 /* DatePickerView */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -186,43 +183,32 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		700D172C2499E09D00F84BB4 /* DatePickerView */ = {
+		7044313E24B70E2400EB9ABB /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				700D172D2499E0D100F84BB4 /* CompassDatePickerCell.swift */,
-				700D172F2499E0F400F84BB4 /* CompassDatePicerCellViewModel.swift */,
-				700D17342499F7EE00F84BB4 /* CompassDatePickerHeaderView.swift */,
+				7044313C24B70E1200EB9ABB /* DatePickerViewCollectionViewCell.swift */,
+				7044313F24B70FC300EB9ABB /* DatePickerCollectionCellViewModel.swift */,
 			);
-			path = DatePickerView;
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
-		700D17312499E6D000F84BB4 /* Const */ = {
+		7044314124B712CA00EB9ABB /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				700D17322499E6DF00F84BB4 /* DatePickerColorConst.swift */,
-			);
-			path = Const;
-			sourceTree = "<group>";
-		};
-		700D1736249A0D9E00F84BB4 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				700D1737249A0DAA00F84BB4 /* DateExtension.swift */,
-				707FDDD6249C8ABD0078430F /* UIColorExtension.swift */,
+				7044314224B712D400EB9ABB /* Box.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
 		};
-		708E36F92498B24B00619CE4 /* DatePicker */ = {
+		7052B3FB24B6FBED003E2BA2 /* DatePickerView */ = {
 			isa = PBXGroup;
 			children = (
-				700D1736249A0D9E00F84BB4 /* Util */,
-				700D17312499E6D000F84BB4 /* Const */,
-				700D172C2499E09D00F84BB4 /* DatePickerView */,
-				708E36FA2498B29100619CE4 /* DatePickerViewController.swift */,
-				708E36FC2498B2BA00619CE4 /* DatePicerViewModel.swift */,
+				7044314124B712CA00EB9ABB /* Util */,
+				7044313E24B70E2400EB9ABB /* CollectionViewCell */,
+				7052B3FC24B6FC15003E2BA2 /* DatePickerView.swift */,
+				7052B3FE24B70696003E2BA2 /* DatePickerViewModel.swift */,
 			);
-			path = DatePicker;
+			path = DatePickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

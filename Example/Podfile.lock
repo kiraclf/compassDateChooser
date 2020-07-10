@@ -1,5 +1,5 @@
 PODS:
-  - CompassDateChooser (0.0.1):
+  - CompassDateChooser (0.0.2):
     - SnapKit (~> 5.0.1)
   - Nimble (7.3.4)
   - Quick (1.2.0)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CompassDateChooser: a7825fa5331893cfb7da07108deff24cc7623aac
+  CompassDateChooser: 53d1f0faf76ac4bc32a784ceffd864a9f95aba38
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
